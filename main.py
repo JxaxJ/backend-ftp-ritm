@@ -21,8 +21,6 @@ def get_file_list(path='/adm'):
 
     print('faf_2', f_a_f)
 
-get_file_list()
-
 def get_path_file_to_add_widget():
     Temporary_array = []
     files_and_folder = []
