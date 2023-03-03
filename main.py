@@ -1,9 +1,10 @@
 from ftplib import FTP
+import key
 import os
 
 
-ftp = FTP('ftp.smoff.ru')
-ftp.login('FTP-SemenovI2', 'VYX9tGnV')
+ftp = FTP(key.FTP)
+ftp.login(key.Login, key.password)
 
 Temporary_array = []
 files_and_folder = []
