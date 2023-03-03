@@ -11,7 +11,4 @@ It was created as part of a competition of the #### club.**
 
 ***
 
-## Prerequisites
-
-**Stable operation of the application is guaranteed only on these versions:**
 
