@@ -1,6 +1,5 @@
 from ftplib import FTP
 import key
-import os
 
 
 ftp = FTP(key.FTP)
