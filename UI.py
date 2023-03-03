@@ -29,6 +29,7 @@ class Ui_MainWindow(object):
         self.refresh_btn.clicked.connect(self.refresh)
 
     def refresh(self):
+        self.dirs_widget.clear()
         ftp = FTP(key.FTP)
         ftp.login(key.Login, key.password)
 
@@ -45,7 +46,6 @@ class Ui_MainWindow(object):
                 self.Temporary_array.append(f"[FOLDER] /{self.files[i]}")
                 ftp.cwd('../')
 
-        print(self.Temporary_array)
         ftp.quit()
 
         for i in self.Temporary_array:
