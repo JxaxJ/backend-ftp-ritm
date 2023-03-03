@@ -11,7 +11,7 @@ files = ftp.nlst()
 
 for i in range(len(files)):
     try:
-        ftp.cwd(files[i])
+        ftp.cwd(files[i]) #!!!!!Пытается получить доступ к файлам
         all_files.append(ftp.nlst())
         ftp.cwd('../')
 
