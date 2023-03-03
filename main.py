@@ -24,5 +24,4 @@ for i in range(len(Temporary_array)):
         files_and_folder.append(Temporary_array[i][j])
 
 print(files_and_folder)
-
 ftp.quit()
