@@ -34,6 +34,7 @@ class Ui_MainWindow(object):
         ftp.login(key.Login, key.password)
 
         self.Temporary_array = []
+        ftp.cwd('./test_folder')
         self.files = ftp.nlst()
 
         for i in range(len(self.files)):
@@ -46,10 +47,10 @@ class Ui_MainWindow(object):
                 self.Temporary_array.append(f"[FOLDER] /{self.files[i]}")
                 ftp.cwd('../')
 
-        ftp.quit()
-
         for i in self.Temporary_array:
             self.dirs_widget.addItem(i)
+
+        ftp.quit()
 
 
     def retranslateUi(self, MainWindow):
