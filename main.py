@@ -15,7 +15,6 @@ def get_file_list(path='/test_folder'):
     for i in range(len(all_in_path)):
         if len(all_in_path[i].split('.')) == 1:
             dirs.append(all_in_path[i])
-            print('split_files', all_in_path[i].split('.'))
 
         else:
             files.append(all_in_path[i])
@@ -34,7 +33,6 @@ def get_path_file_to_add_widget():
 
         else:
             ftp.cwd(files[i])
-            current_directory = ftp.pwd()
             files_and_folder.append(f"/{files[i]}")
             ftp.cwd('../')
 
@@ -47,7 +45,6 @@ def add_foler(path='/test_folder'):
 
 def old_get_path_file_to_add_widget():
     Temporary_array = []
-    files_and_folder = []
     ftp.cwd('/test_folder')
     files = ftp.nlst()
 
@@ -64,5 +61,7 @@ def old_get_path_file_to_add_widget():
             ftp.cwd('../')
 
     print(Temporary_array)
+
+get_file_list()
 
 ftp.quit()
