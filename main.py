@@ -45,7 +45,6 @@ def add_foler(path='/test_folder'):
     for i in range(10):
         ftp.mkd(f'some_folder_{i}')
 
-
 def old_get_path_file_to_add_widget():
     Temporary_array = []
     files_and_folder = []
