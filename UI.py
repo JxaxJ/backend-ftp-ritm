@@ -1,4 +1,6 @@
+import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
+import os
 from ftplib import FTP
 import key
 
@@ -24,33 +26,41 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.add_fucnt()
+        self.dirs = []
+        self.files = []
 
     def add_fucnt(self):
         self.refresh_btn.clicked.connect(self.refresh)
 
     def refresh(self):
         self.dirs_widget.clear()
-        ftp = FTP(key.FTP)
-        ftp.login(key.Login, key.password)
+        self.dirs = []
+        self.files = []
 
-        self.Temporary_array = []
-        ftp.cwd('./test_folder')
-        self.files = ftp.nlst()
+        t = threading.Thread(target=self.get_files_and_dirs, args=('',))
+        t.start()
 
-        for i in range(len(self.files)):
-            if len(self.files[i].split('.')) > 1:
-                current_directory = ftp.pwd()
-                self.Temporary_array.append(f"[{current_directory}]/{self.files[i]}")
+    def get_files_and_dirs(self, path):
+        try:
+            self.ftp = FTP(key.FTP)
+            self.ftp.login(key.Login, key.password)
 
-            else:
-                ftp.cwd(self.files[i])
-                self.Temporary_array.append(f"[FOLDER] /{self.files[i]}")
-                ftp.cwd('../')
+            self.ftp.cwd(path)
+            items = self.ftp.nlst()
 
-        for i in self.Temporary_array:
-            self.dirs_widget.addItem(i)
+            for item in items:
+                if "." not in item:  # if item is a folder (no extension)
+                    self.dirs.append(os.path.join(path, item))
+                    self.dirs_widget.addItem(f"[FOLDER] {os.path.join(path, item)}")
+                    self.get_files_and_dirs(os.path.join(path, item))
+                else:  # if item is a file
+                    self.files.append(os.path.join(path, item))
+                    self.dirs_widget.addItem(f"[FILES] {os.path.join(path, item)}")
 
-        ftp.quit()
+            self.ftp.cwd("..")  # go back up one level in the remote folder hierarchy
+            self.ftp.quit()
+        except:
+            pass
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -59,7 +69,6 @@ class Ui_MainWindow(object):
         self.dirs_widget.setSortingEnabled(False)
         self.dirs_widget.setSortingEnabled(__sortingEnabled)
         self.refresh_btn.setText(_translate("MainWindow", "Refresh"))
-
 
 if __name__ == "__main__":
     import sys

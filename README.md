@@ -8,3 +8,11 @@
 
 **A simple program with UI in PyQt5 to output all files/directories from ####. \
 It was created as part of a competition of the #### club.**
+
+***
+
+<html><center><h2>THIS IS WORK</h2></center></html>
+
+**Yay! It's alive.
+To get this program to work, I had to spend a lot of time and nerves to ~~write a request in chatgpt to generate this code~~.
+to write this code and get it to work properly.**
