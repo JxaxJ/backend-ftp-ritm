@@ -70,7 +70,6 @@ class Ui_MainWindow(object):
         self.dirs_widget.setSortingEnabled(__sortingEnabled)
         self.refresh_btn.setText(_translate("MainWindow", "Refresh"))
 
-
 if __name__ == "__main__":
     import sys
 
