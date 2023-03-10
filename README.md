@@ -11,7 +11,7 @@ It was created as part of a competition of the #### club.**
 
 ***
 
-<center><h2>THIS IS WORK</h2></center>
+<html><center><h2>THIS IS WORK</h2></center></html>
 
 **Yay! It's alive.
 To get this program to work, I had to spend a lot of time and nerves to ~~write a request in chatgpt to generate this code~~.
